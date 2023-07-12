@@ -31,6 +31,9 @@ namespace game21
 
         operator int() const;
         operator std::string() const noexcept(false);
+
+        int operator+(int value) const;
+        int operator+(const CardRank &rhs) const;
     };
 }
 
