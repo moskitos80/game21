@@ -2,6 +2,16 @@
 #include <stdexcept>
 #include <string>
 
+int game21::CardRank::operator+(int value) const
+{
+    return static_cast<int>(mRank) + value;
+}
+
+int game21::CardRank::operator+(const CardRank &rhs) const
+{
+    return static_cast<int>(mRank) + static_cast<int>(rhs.mRank);
+}
+
 game21::CardRank::operator int() const noexcept(false)
 {
     switch (mRank)
@@ -19,8 +29,9 @@ game21::CardRank::operator int() const noexcept(false)
     case RANK_J:
     case RANK_Q:
     case RANK_K:
-    case RANK_A:
         return 10;
+    case RANK_A:
+        return 11;
     default:
         throw std::range_error{
             "Unknown Suit"};
