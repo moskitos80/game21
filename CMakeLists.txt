@@ -34,6 +34,7 @@ FetchContent_MakeAvailable(googletest)
 enable_testing()
 add_executable(game21test 
     src/Game21/Card.cpp
+    src/Game21/Card.test.cpp
     src/Game21/CardRank.cpp
     src/Game21/CardRank.test.cpp
     src/Game21/CardSuit.cpp
