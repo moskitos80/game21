@@ -3,10 +3,13 @@ project(Game21)
 
 add_executable(Game21 
     src/game21.cpp
+    src/Game21/Card.cpp
+    src/Game21/CardRank.cpp
+    src/Game21/CardSuit.cpp
 )
 
 target_include_directories(Game21 
-    PRIVATE src/includes
+    PUBLIC src/includes
 )
 
 target_link_libraries(Game21 
