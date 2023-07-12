@@ -21,3 +21,28 @@ set_target_properties(Game21 PROPERTIES
     CXX_STANDARD_REQUIRED true
     CXX_STANDARD 17
 )
+
+include(FetchContent)
+FetchContent_Declare(
+  googletest
+  URL https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
+)
+
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+add_executable(game21test 
+    src/Game21/Card.cpp
+    src/Game21/CardRank.cpp
+    src/Game21/CardRank.test.cpp
+    src/Game21/CardSuit.cpp
+    src/Game21/CardSuit.test.cpp
+)
+target_include_directories(game21test 
+    PUBLIC src/includes
+)
+target_link_libraries(game21test GTest::gtest_main)
+include(GoogleTest)
+
+gtest_discover_tests(game21test)
