@@ -6,6 +6,7 @@ add_executable(Game21
     src/Game21/Card.cpp
     src/Game21/CardRank.cpp
     src/Game21/CardSuit.cpp
+    src/Game21/CardDeck.cpp
 )
 
 target_include_directories(Game21 
@@ -39,6 +40,8 @@ add_executable(game21test
     src/Game21/CardRank.test.cpp
     src/Game21/CardSuit.cpp
     src/Game21/CardSuit.test.cpp
+    src/Game21/CardDeck.cpp
+    src/Game21/CardDeck.test.cpp
 )
 target_include_directories(game21test 
     PUBLIC src/includes
