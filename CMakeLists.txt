@@ -3,6 +3,7 @@ project(Game21)
 
 add_executable(Game21 
     src/game21.cpp
+    src/Game21/Game.cpp
     src/Game21/Card.cpp
     src/Game21/CardRank.cpp
     src/Game21/CardSuit.cpp
@@ -17,6 +18,15 @@ target_link_libraries(Game21
     PRIVATE m
 )
 
+target_compile_options(Game21 PRIVATE
+    -g3
+    -Wall
+    -Wextra
+    -Werror
+    -Wpedantic
+    -Og
+    -D_FORTIFY_SOURCE=2
+)
 set_target_properties(Game21 PROPERTIES
     CXX_EXTENSIONS off
     CXX_STANDARD_REQUIRED true
@@ -34,6 +44,8 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 add_executable(game21test 
+    src/Game21/Game.cpp
+    src/Game21/Game.test.cpp
     src/Game21/Card.cpp
     src/Game21/Card.test.cpp
     src/Game21/CardRank.cpp

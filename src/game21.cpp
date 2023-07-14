@@ -1,19 +1,21 @@
-#include "CardDeck.hpp"
+#include "Game.hpp"
 #include <array>
 #include <iostream>
+#include <locale>
 
 using namespace game21;
 
-int main(int argc, char const *argv[])
+int main()
 {
-    int sum = 0;
-    for (auto &&card : CardDeck::deck)
-    {
-        sum += card;
-        std::cout << static_cast<std::string>(card) << "\n";
-    }
+    auto locale = std::locale("");
+    auto localeOld = std::locale::global(locale);
+    std::cout.imbue(locale);
 
-    std::cout << "Card sum:" << sum << std::endl;
+    Game theGame{std::cin, std::cout};
+    theGame.startGame();
+
+    std::locale::global(localeOld);
+    std::cout.imbue(localeOld);
 
     return 0;
 }
