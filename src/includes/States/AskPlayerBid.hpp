@@ -2,14 +2,15 @@
 #define __ASKPLBID__H__
 
 #include "FSM.hpp"
+#include "Game.hpp"
 
 namespace game21
 {
-    class AskPlayerBid : public FSMState
+    class AskPlayerBid : public FSMState<Scene, Game>
     {
     public:
-        int execute(void *context) override;
-        ~AskPlayerBid(){}
+        Scene execute(Game *context) override;
+        ~AskPlayerBid() {}
     };
 
 } // namespace game21

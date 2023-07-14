@@ -6,14 +6,15 @@
 
 namespace game21
 {
+    template<typename Key, typename Ctx>
     class FSMState
     {
     public:
-        virtual int execute(void *context) = 0;
+        virtual Key execute(Ctx *context) = 0;
         virtual ~FSMState() {}
     };
 
-    template<typename Key, typename State>
+    template <typename Key, typename State, typename Ctx>
     class FSM
     {
         std::map<Key, State *> mStateList;
@@ -24,20 +25,19 @@ namespace game21
             mStateList[key] = state;
             return *this;
         }
-        
-        void run(Key key, void *context) noexcept(false)
+
+        void run(Key start, Key finish, Ctx *context) noexcept(false)
         {
-            auto startState = mStateList.find(key);
+            auto startState = mStateList.find(start);
             if (std::end(mStateList) == startState) {
                 throw std::range_error{"state doesn't exists"};
             }
 
-            auto curState = mStateList[key];
-            
-            while(nullptr != curState) {
-                key = curState->execute(context);
-                curState = mStateList[key];
-            }
+            auto nextStateKey = start;
+
+            do {
+                nextStateKey = mStateList[nextStateKey]->execute(context);
+            } while (nextStateKey != finish);
         }
     };
 
