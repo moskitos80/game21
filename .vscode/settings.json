@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.asm": "asm-collection",
         "*.c": "c",
         "cctype": "cpp",
         "clocale": "cpp",
@@ -77,6 +78,7 @@
         "typeinfo": "cpp",
         "valarray": "cpp",
         "variant": "cpp",
-        "any": "cpp"
+        "any": "cpp",
+        "*.inc": "cpp"
     }
 }

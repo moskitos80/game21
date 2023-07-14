@@ -3,6 +3,10 @@ project(Game21)
 
 add_executable(Game21 
     src/game21.cpp
+
+    src/Game21/States/AskPlayerBid.cpp
+    src/Game21/States/AskPlayerBalance.cpp
+
     src/Game21/Game.cpp
     src/Game21/Card.cpp
     src/Game21/CardRank.cpp
@@ -44,6 +48,11 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 add_executable(game21test 
+    src/Game21/FSM.test.cpp
+
+    src/Game21/States/AskPlayerBid.cpp
+    src/Game21/States/AskPlayerBalance.cpp
+
     src/Game21/Game.cpp
     src/Game21/Game.test.cpp
     src/Game21/Card.cpp

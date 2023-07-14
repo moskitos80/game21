@@ -6,6 +6,21 @@
 
 namespace game21
 {
+    enum class Scene {
+        Finish,
+        AskPlayerBalance,
+        AskPlayerBid,
+        DillerGetsCards,
+        PlayerGetsCards,
+        PlayerGetsMoreCards,
+        DillerGetsMoreCards,
+        PlayerOverhead,
+        DillerOverhead,
+        PlayerScoreWin,
+        DillerScoreWin,
+        DeadHeat,
+    };
+
     class Game 
     {
         std::istream &mInput;
