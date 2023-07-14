@@ -1,4 +1,18 @@
 #include "Game.hpp"
+#include "FSM.hpp"
+
+#include "States/AskPlayerBalance.hpp"
+#include "States/AskPlayerBid.hpp"
+#include "States/DeadHeat.hpp"
+#include "States/DillerGetsCards.hpp"
+#include "States/DillerGetsMoreCards.hpp"
+#include "States/DillerOverhead.hpp"
+#include "States/DillerScoreWin.hpp"
+#include "States/PlayerGetsCards.hpp"
+#include "States/PlayerGetsMoreCards.hpp"
+#include "States/PlayerOverhead.hpp"
+#include "States/PlayerScoreWin.hpp"
+
 #include <iostream>
 #include <locale>
 
@@ -13,12 +27,46 @@ namespace game21
           mOuterr{outerr},
           mPlrHand{},
           mDlrHand{}
-    {
-        // TODO: realize Game::Game
+    { /* EMPTY */
     }
 
     void Game::startGame() noexcept(false)
     {
-        // TODO: realize Game::startGame
+        FSM<Scene, FSMState<Scene, Game>, Game> fsm;
+
+        AskPlayerBalance scene1;
+        fsm.addState(Scene::AskPlayerBalance, &scene1);
+        
+        AskPlayerBid scene2;
+        fsm.addState(Scene::AskPlayerBid, &scene2);
+
+        DillerGetsCards scene3;
+        fsm.addState(Scene::DillerGetsCards, &scene3);
+
+        PlayerGetsCards scene4;
+        fsm.addState(Scene::PlayerGetsCards, &scene4);
+
+        PlayerGetsMoreCards scene5;
+        fsm.addState(Scene::PlayerGetsMoreCards, &scene5);
+
+        DillerGetsMoreCards scene6;
+        fsm.addState(Scene::DillerGetsMoreCards, &scene6);
+
+        DillerOverhead scene7;
+        fsm.addState(Scene::DillerOverhead, &scene7);
+
+        PlayerOverhead scene8;
+        fsm.addState(Scene::PlayerOverhead, &scene8);
+
+        DillerScoreWin scene9;
+        fsm.addState(Scene::DillerScoreWin, &scene9);
+
+        PlayerScoreWin scene10;
+        fsm.addState(Scene::PlayerScoreWin, &scene10);
+
+        DeadHeat scene11;
+        fsm.addState(Scene::DeadHeat, &scene11);
+
+        fsm.run(Scene::AskPlayerBalance, Scene::Finish, this);
     }
 } // namespace game21
