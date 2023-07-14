@@ -15,8 +15,13 @@ game21::Card::operator int() const
     return mRank;
 }
 
-game21::Card::operator std::string() const noexcept(false)
+std::string game21::Card::toString() const
 {
-    return static_cast<std::string>(mRank) + 
-        "[" + static_cast<std::string>(mSuit) + "]";
+    return static_cast<std::string>(mRank) +
+           "[" + static_cast<std::string>(mSuit) + "]";
+}
+
+game21::Card::operator const std::string() const noexcept(false)
+{
+    return toString();
 }

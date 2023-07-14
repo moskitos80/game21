@@ -14,12 +14,14 @@ namespace game21 {
         constexpr Card(CardRank rank, CardSuit suit)
             : mRank{rank}, mSuit{suit}
         {}
-        
+
         operator int() const;
-        operator std::string() const noexcept(false);
-        
+        operator const std::string() const noexcept(false);
+
         int operator+(int value) const;
         int operator+(const Card &rhs) const;
+
+        std::string toString() const;        
 
         private : 
             CardRank mRank;

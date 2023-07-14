@@ -22,7 +22,7 @@ TEST(CardTest, CardUnesxistsTest)
     Card cardSuitError{CardRank::RANK_A, static_cast<CardSuit::Suit>(-1)};
 
     EXPECT_THROW(static_cast<int>(cardRankError), std::range_error);
-    EXPECT_THROW(static_cast<std::string>(cardSuitError), std::range_error);
+    EXPECT_THROW(cardSuitError.toString(), std::range_error);
 }
 
 TEST(CardTest, CardTestToStr)
@@ -32,10 +32,10 @@ TEST(CardTest, CardTestToStr)
     Card cardQH{CardRank::RANK_Q, CardSuit::Heart};
     Card cardAC{CardRank::RANK_A, CardSuit::Club};
 
-    EXPECT_STREQ("2[♠]", static_cast<std::string>(card2S).c_str());
-    EXPECT_STREQ("10[♦]", static_cast<std::string>(card10D).c_str());
-    EXPECT_STREQ("Q[♥]", static_cast<std::string>(cardQH).c_str());
-    EXPECT_STREQ("A[♣]", static_cast<std::string>(cardAC).c_str());
+    EXPECT_STREQ("2[♠]", card2S.toString().c_str());
+    EXPECT_STREQ("10[♦]", card10D.toString().c_str());
+    EXPECT_STREQ("Q[♥]", cardQH.toString().c_str());
+    EXPECT_STREQ("A[♣]", cardAC.toString().c_str());
 }
 
 TEST(CardTest, CardTestOperatorPlus)
