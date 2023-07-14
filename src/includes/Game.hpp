@@ -25,22 +25,25 @@ namespace game21
         DeadHeat,
     };
 
-    class Game
+    struct Game
     {
+
         std::istream &mInput;
         std::ostream &mOutput;
         std::ostream &mOuterr;
 
-        float mPlrBalance = 0.0f;
-        float mPlrBid = 0.0f;
-
         Hand mPlrHand;
         Hand mDlrHand;
 
-    public:
+        float mPlrBalance;
+        float mPlrBid;
+
         class InterruptedException
-            : public std::exception
+            : public std::runtime_error
         {
+        public:
+            InterruptedException()
+                : std::runtime_error{"Прервано"} {}
         };
 
         Game(std::istream &input,

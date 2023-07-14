@@ -26,7 +26,9 @@ namespace game21
           mOutput{output},
           mOuterr{outerr},
           mPlrHand{},
-          mDlrHand{}
+          mDlrHand{},
+          mPlrBalance{0},
+          mPlrBid{0}
     { /* EMPTY */
     }
 
@@ -36,7 +38,7 @@ namespace game21
 
         AskPlayerBalance scene1;
         fsm.addState(Scene::AskPlayerBalance, &scene1);
-        
+
         AskPlayerBid scene2;
         fsm.addState(Scene::AskPlayerBid, &scene2);
 
