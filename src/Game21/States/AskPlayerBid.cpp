@@ -6,7 +6,7 @@ namespace game21
     Scene AskPlayerBid::execute(Game __attribute_maybe_unused__ *context)
     {
         std::cout<<"AskPlayerBid\n";
-        return Scene::Finish;
+        return Scene::DillerGetsCards;
     }
 
 } // namespace game21

@@ -6,9 +6,19 @@ add_executable(Game21
 
     src/Game21/States/AskPlayerBid.cpp
     src/Game21/States/AskPlayerBalance.cpp
+    src/Game21/States/DillerGetsCards.cpp
+    src/Game21/States/PlayerGetsCards.cpp
+    src/Game21/States/PlayerGetsMoreCards.cpp
+    src/Game21/States/DillerGetsMoreCards.cpp
+    src/Game21/States/DillerOverhead.cpp
+    src/Game21/States/PlayerOverhead.cpp
+    src/Game21/States/DillerScoreWin.cpp
+    src/Game21/States/PlayerScoreWin.cpp
+    src/Game21/States/DeadHeat.cpp
 
     src/Game21/Game.cpp
     src/Game21/Card.cpp
+    src/Game21/Hand.cpp
     src/Game21/CardRank.cpp
     src/Game21/CardSuit.cpp
     src/Game21/CardDeck.cpp
@@ -52,9 +62,20 @@ add_executable(game21test
 
     src/Game21/States/AskPlayerBid.cpp
     src/Game21/States/AskPlayerBalance.cpp
+    src/Game21/States/DillerGetsCards.cpp
+    src/Game21/States/PlayerGetsCards.cpp
+    src/Game21/States/PlayerGetsMoreCards.cpp
+    src/Game21/States/DillerGetsMoreCards.cpp
+    src/Game21/States/DillerOverhead.cpp
+    src/Game21/States/PlayerOverhead.cpp
+    src/Game21/States/DillerScoreWin.cpp
+    src/Game21/States/PlayerScoreWin.cpp
+    src/Game21/States/DeadHeat.cpp
 
     src/Game21/Game.cpp
     src/Game21/Game.test.cpp
+    src/Game21/Hand.cpp
+    src/Game21/Hand.test.cpp
     src/Game21/Card.cpp
     src/Game21/Card.test.cpp
     src/Game21/CardRank.cpp

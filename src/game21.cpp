@@ -11,7 +11,7 @@ int main()
     auto localeOld = std::locale::global(locale);
     std::cout.imbue(locale);
 
-    Game theGame{std::cin, std::cout};
+    Game theGame{std::cin, std::cout, std::cerr};
     theGame.startGame();
 
     std::locale::global(localeOld);
