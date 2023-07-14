@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "States/DillerGetsCards.hpp""
+#include "States/DillerGetsCards.hpp"
 
 namespace game21
 {
