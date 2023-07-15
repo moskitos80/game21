@@ -37,7 +37,7 @@ namespace game21
             auto nextStateKey = start;
 
             do {
-                auto *state = mStateList[nextStateKey];
+                auto state = mStateList[nextStateKey];
                 nextStateKey = state->execute(context);
             } while (nextStateKey != finish);
         }
