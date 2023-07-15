@@ -1,4 +1,5 @@
 #include "Game.hpp"
+#include "CardDeck.hpp"
 #include "FSM.hpp"
 
 #include "States/AskPlayerBalance.hpp"
@@ -39,6 +40,8 @@ namespace game21
 
     void Game::startGame() noexcept(false)
     {
+        CardDeck::shuffle();
+
         FSM<Scene, Game, FSMState<Scene, Game>> fsm;
 
         AskPlayerBalance scene1;
@@ -81,7 +84,9 @@ namespace game21
     {
         mOutput << "Баланс игрока: " << mPlrBalance << "\n"
                 << "Ставка игрока: " << mPlrBid << "\n"
-                << "Карты игрока: " << mPlrHand.toString() << "\n"
-                << "Карты диллера: " << mDlrHand.toString() << "\n\n";
+                << "Карты игрока: " << mPlrHand.toString()
+                << "(" << mPlrHand.getValue() << ")\n"
+                << "Карты диллера: " << mDlrHand.toString()
+                << "(" << mDlrHand.getValue() << ")\n\n";
     }
 } // namespace game21
