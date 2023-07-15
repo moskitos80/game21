@@ -16,19 +16,23 @@ namespace game21
             << game->mPlrBalance
             << " Ctrl+D выход):\n";
 
-        while (true)
+        std::ostringstream vErrMsg;
+        vErrMsg << std::fixed << std::setprecision(2)
+                << "Ставка не может превышать баланс: "
+                << game->mPlrBalance << "\n";
+
+        auto balance = game->mPlrBalance;
+        std::function<bool(float)> validator = [balance](float result) -> bool
         {
-            game->getInput(
-                game->mPlrBid, msg.str().c_str(),
-                "Не корректный ввод, попробуйте еще раз (Ctrl+D выход):\n");
-            if (game->mPlrBid <= game->mPlrBalance)
-            {
-                break;
-            }
-            game->mOuterr << "Ставка: " << game->mPlrBid
-                          << " не может превышать баланс: "
-                          << game->mPlrBalance << "\n";
-        }
+            return result <= balance;
+        };
+        
+        game->getInput(
+            game->mPlrBid,
+            msg.str(),
+            "Не корректный ввод, попробуйте еще раз (Ctrl+D выход):\n",
+            vErrMsg.str(),
+            validator);
 
         game->mPlrBalance -= game->mPlrBid;
 
