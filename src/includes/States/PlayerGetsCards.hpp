@@ -9,7 +9,7 @@ namespace game21
     class PlayerGetsCards : public FSMState<Scene, Game>
     {
     public:
-        Scene execute(Game *context) override;
+        Scene execute(Game *context) noexcept(false) override;
         ~PlayerGetsCards() {}
     };
 } // namespace game21

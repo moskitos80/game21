@@ -9,7 +9,7 @@ namespace game21
     class DillerScoreWin : public FSMState<Scene, Game>
     {
     public:
-        Scene execute(Game *context) override;
+        Scene execute(Game *context) noexcept(false) override;
         ~DillerScoreWin() {}
     };
 } // namespace game21

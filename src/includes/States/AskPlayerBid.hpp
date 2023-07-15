@@ -9,7 +9,7 @@ namespace game21
     class AskPlayerBid : public FSMState<Scene, Game>
     {
     public:
-        Scene execute(Game *context) override;
+        Scene execute(Game *context) noexcept(false) override;
         ~AskPlayerBid() {}
     };
 

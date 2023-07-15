@@ -9,7 +9,7 @@ namespace game21
     class PlayerOverhead : public FSMState<Scene, Game>
     {
     public:
-        Scene execute(Game *context) override;
+        Scene execute(Game *context) noexcept(false) override;
         ~PlayerOverhead() {}
     };
 } // namespace game21
