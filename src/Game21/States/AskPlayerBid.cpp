@@ -1,5 +1,6 @@
 #include "States/AskPlayerBid.hpp"
 #include "Game.hpp"
+
 #include <iomanip>
 #include <sstream>
 
@@ -22,17 +23,14 @@ namespace game21
                 << game->mPlrBalance << "\n";
 
         auto balance = game->mPlrBalance;
-        std::function<bool(float)> validator = [balance](float result) -> bool
-        {
-            return result <= balance;
-        };
-        
+
         game->getInput(
             game->mPlrBid,
             msg.str(),
             "Не корректный ввод, попробуйте еще раз (Ctrl+D выход):\n",
             vErrMsg.str(),
-            validator);
+            std::function<bool(float)>([balance](float result) -> bool
+                                       { return result <= balance; }));
 
         game->mPlrBalance -= game->mPlrBid;
 
