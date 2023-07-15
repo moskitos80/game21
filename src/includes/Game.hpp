@@ -3,8 +3,11 @@
 
 #include "Card.hpp"
 #include "Hand.hpp"
+#include <chrono>
 #include <iostream>
+#include <limits>
 #include <stdexcept>
+#include <thread>
 #include <vector>
 
 namespace game21
@@ -51,6 +54,42 @@ namespace game21
              std::ostream &outerr) noexcept(false);
 
         void startGame() noexcept(false);
+
+        template <typename T>
+        std::istream &getInput(T &result, const char *msg, const char *errMsg) noexcept(false)
+        {
+            mOutput << msg;
+
+            while (!(mInput >> result))
+            {
+                if (mInput.eof())
+                {
+                    throw Game::InterruptedException{};
+                }
+
+                mInput.clear();
+                mInput.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+                mOuterr << errMsg;
+            }
+            mInput.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+            return mInput;
+        }
+
+        inline void clearScreen() const noexcept {
+            __attribute_maybe_unused__ auto _ = std::system("clear");
+        }
+
+        inline const Game &waitFor(int msec) const noexcept
+        {
+            // https://en.cppreference.com/w/cpp/thread/sleep_for
+            // https://stackoverflow.com/questions/60480907/how-to-convert-int-to-chrono-milliseconds
+            std::this_thread::sleep_for(
+                std::chrono::milliseconds(msec));
+            return *this;
+        }
+
+        void showInfo() const noexcept(false);
     };
 
 } // namespace game21
