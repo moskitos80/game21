@@ -4,6 +4,7 @@
 #include "Card.hpp"
 #include "Hand.hpp"
 #include <chrono>
+#include <functional>
 #include <iostream>
 #include <limits>
 #include <stdexcept>
@@ -56,7 +57,10 @@ namespace game21
         void startGame() noexcept(false);
 
         template <typename T>
-        std::istream &getInput(T &result, const char *msg, const char *errMsg) noexcept(false)
+        std::istream &getInput(
+            T &result,
+            const std::string &msg,
+            const std::string &inputErrMsg) noexcept(false)
         {
             mOutput << msg;
 
@@ -69,14 +73,38 @@ namespace game21
 
                 mInput.clear();
                 mInput.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-                mOuterr << errMsg;
+                mOuterr << inputErrMsg;
             }
             mInput.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
             return mInput;
         }
 
-        inline void clearScreen() const noexcept {
+        template <typename T>
+        std::istream &getInput(
+            T &result, 
+            const std::string &msg,
+            const std::string &inputErrMsg,
+            const std::string &validateErrMsg,
+            std::function<bool(T)> validator) noexcept(false)
+        {
+            while (true)
+            {
+                getInput(result, msg, inputErrMsg);
+
+                if (validator(result))
+                {
+                    break;
+                }
+
+                mOuterr << validateErrMsg;
+            }
+
+            return mInput;
+        }
+
+        inline void clearScreen() const noexcept
+        {
             __attribute_maybe_unused__ auto _ = std::system("clear");
         }
 
