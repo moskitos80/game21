@@ -39,8 +39,8 @@ namespace game21
         Hand mPlrHand;
         Hand mDlrHand;
 
-        float mPlrBalance;
-        float mPlrBid;
+        int mPlrBalance;
+        int mPlrBid;
 
         class InterruptedException
             : public std::runtime_error

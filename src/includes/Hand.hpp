@@ -16,6 +16,7 @@ namespace game21
             void addCard(const Card*);
             int getValue() const;
             std::string toString() const;
+            void clear();
     };
 }
 

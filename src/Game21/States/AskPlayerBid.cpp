@@ -1,4 +1,5 @@
 #include "States/AskPlayerBid.hpp"
+#include "CardDeck.hpp"
 #include "Game.hpp"
 
 #include <iomanip>
@@ -10,6 +11,10 @@ namespace game21
     {
         game->waitFor(1500);
         game->clearScreen();
+
+        CardDeck::shuffle();
+        game->mPlrHand.clear();
+        game->mDlrHand.clear();
 
         std::ostringstream msg;
         msg << "Укажите вашу ставку (не более "
@@ -29,7 +34,7 @@ namespace game21
             msg.str(),
             "Не корректный ввод, попробуйте еще раз (Ctrl+D выход):\n",
             vErrMsg.str(),
-            std::function<bool(float)>([balance](float result) -> bool
+            std::function<bool(int)>([balance](int result) -> bool
                                        { return result <= balance; }));
 
         game->mPlrBalance -= game->mPlrBid;

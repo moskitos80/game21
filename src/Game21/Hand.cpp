@@ -35,4 +35,9 @@ namespace game21
         }
         return val.str();
     }
+
+    void Hand::clear()
+    {
+        mCardList.clear();
+    }
 }

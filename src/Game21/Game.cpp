@@ -1,5 +1,4 @@
 #include "Game.hpp"
-#include "CardDeck.hpp"
 #include "FSM.hpp"
 
 #include "States/AskPlayerBalance.hpp"
@@ -40,8 +39,6 @@ namespace game21
 
     void Game::startGame() noexcept(false)
     {
-        CardDeck::shuffle();
-
         FSM<Scene, Game, FSMState<Scene, Game>> fsm;
 
         AskPlayerBalance scene1;
