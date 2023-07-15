@@ -13,6 +13,7 @@
 #include "States/PlayerOverhead.hpp"
 #include "States/PlayerScoreWin.hpp"
 
+#include <iomanip>
 #include <iostream>
 #include <locale>
 
@@ -29,12 +30,16 @@ namespace game21
           mDlrHand{},
           mPlrBalance{0},
           mPlrBid{0}
-    { /* EMPTY */
+    {
+        mOutput << std::fixed 
+                << std::setprecision(2);
+        mOuterr << std::fixed
+                << std::setprecision(2);
     }
 
     void Game::startGame() noexcept(false)
     {
-        FSM<Scene, FSMState<Scene, Game>, Game> fsm;
+        FSM<Scene, Game, FSMState<Scene, Game>> fsm;
 
         AskPlayerBalance scene1;
         fsm.addState(Scene::AskPlayerBalance, &scene1);
@@ -70,5 +75,13 @@ namespace game21
         fsm.addState(Scene::DeadHeat, &scene11);
 
         fsm.run(Scene::AskPlayerBalance, Scene::Finish, this);
+    }
+
+    void Game::showInfo() const noexcept(false)
+    {
+        mOutput << "Баланс игрока: " << mPlrBalance << "\n"
+                << "Ставка игрока: " << mPlrBid << "\n"
+                << "Карты игрока: " << mPlrHand.toString() << "\n"
+                << "Карты диллера: " << mDlrHand.toString() << "\n\n";
     }
 } // namespace game21

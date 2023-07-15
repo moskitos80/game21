@@ -10,11 +10,12 @@ namespace game21
     class FSMState
     {
     public:
+        // TODO: Change type: FSMState::execute(Ctx *context) to FSMState::execute(Ctx &context)
         virtual Key execute(Ctx *context) = 0;
         virtual ~FSMState() {}
     };
 
-    template <typename Key, typename State, typename Ctx>
+    template <typename Key, typename Ctx, typename State = FSMState<Key,Ctx>>
     class FSM
     {
         std::map<Key, State *> mStateList;
@@ -36,7 +37,8 @@ namespace game21
             auto nextStateKey = start;
 
             do {
-                nextStateKey = mStateList[nextStateKey]->execute(context);
+                auto *state = mStateList[nextStateKey];
+                nextStateKey = state->execute(context);
             } while (nextStateKey != finish);
         }
     };
