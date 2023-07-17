@@ -1,5 +1,7 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.11)
+
 project(Game21)
+cmake_policy(SET CMP0135 NEW)
 
 add_executable(Game21 
     src/game21.cpp
